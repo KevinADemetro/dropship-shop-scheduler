@@ -5,8 +5,10 @@ import { logger } from './logging/logger';
 
 function main(): void {
   if (!env.SCHEDULER_ENABLED) {
-    logger.warn('SCHEDULER_ENABLED=false — process will idle without registering cron jobs');
-    return;
+    logger.error(
+      'SCHEDULER_ENABLED=false — misconfiguration: refusing to start. Set SCHEDULER_ENABLED=true, or scale the deployment to zero.',
+    );
+    process.exit(1);
   }
 
   const scheduler = createDropshipScheduler();

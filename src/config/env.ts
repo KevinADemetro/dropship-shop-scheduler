@@ -36,7 +36,7 @@ export const env = cleanEnv(process.env, {
   DEACTIVATE_CRON: cronExpr({ default: '0 9 * * *' }),
   /** node-cron expression for activating Dropship (isActive=true). */
   ACTIVATE_CRON: cronExpr({ default: '0 15 * * *' }),
-  /** When false, cron jobs are not registered (useful in tests). */
+  /** When false, main refuses to start (exit 1). Tests set this so importing env does not imply a live scheduler. */
   SCHEDULER_ENABLED: bool({ default: true }),
   LOG_LEVEL: str({ default: 'info', choices: ['debug', 'info', 'warn', 'error'] }),
 });
