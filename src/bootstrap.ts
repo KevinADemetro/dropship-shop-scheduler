@@ -6,6 +6,20 @@ import { setLogLevel } from './logging/logger';
 import { DropshipScheduler } from './scheduler/dropship-scheduler';
 import { ToggleDropshipService } from './services/toggle-dropship.service';
 
+export function createAuthClient(): AuthClient {
+  setLogLevel(env.LOG_LEVEL);
+  return new AuthClient(new HttpClient(env.API_BASE_URL));
+}
+
+export function getLoginCredentials() {
+  return {
+    email: env.AUTH_EMAIL,
+    password: env.AUTH_PASSWORD,
+    countryCode: env.AUTH_COUNTRY_CODE,
+    consumerUsername: env.AUTH_CONSUMER_USERNAME,
+  };
+}
+
 export function createToggleDropshipService(): ToggleDropshipService {
   setLogLevel(env.LOG_LEVEL);
 
@@ -16,12 +30,7 @@ export function createToggleDropshipService(): ToggleDropshipService {
   return new ToggleDropshipService({
     authClient,
     shopsClient,
-    credentials: {
-      email: env.AUTH_EMAIL,
-      password: env.AUTH_PASSWORD,
-      countryCode: env.AUTH_COUNTRY_CODE,
-      consumerUsername: env.AUTH_CONSUMER_USERNAME,
-    },
+    credentials: getLoginCredentials(),
     merchantCode: env.MERCHANT_CODE,
   });
 }
