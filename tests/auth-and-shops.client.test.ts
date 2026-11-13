@@ -47,6 +47,27 @@ describe('AuthClient / ShopsClient', () => {
     ).rejects.toBeInstanceOf(HttpClientError);
   });
 
+  it('gets merchants/order-split/shops filtered by merchantCode', async () => {
+    const http = {
+      request: jest.fn().mockResolvedValue({ status: 200, data: { shops: [] } }),
+    } as unknown as HttpClient;
+
+    await new ShopsClient(http).listOrderSplitShops({
+      accessToken: 'token-1',
+      merchantCode: 'Sandbox',
+      countryCode: 'us',
+    });
+
+    expect(http.request).toHaveBeenCalledWith({
+      method: 'GET',
+      path: '/merchants/order-split/shops?merchantCode=Sandbox',
+      headers: {
+        Authorization: 'token-1',
+        'x-country-code': 'us',
+      },
+    });
+  });
+
   it('patches merchants/order-split/shops with Authorization and isActive payload', async () => {
     const http = {
       request: jest.fn().mockResolvedValue({ status: 200, data: { results: [] } }),

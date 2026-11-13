@@ -9,6 +9,7 @@
     "dev": "ts-node src/main.ts",
     "cli": "ts-node src/cli.ts",
     "run:login": "ts-node src/cli.ts login",
+    "run:shops": "ts-node src/cli.ts shops",
     "run:deactivate": "ts-node src/cli.ts deactivate",
     "run:activate": "ts-node src/cli.ts activate",
     "typecheck": "tsc --noEmit",

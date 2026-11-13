@@ -11,6 +11,11 @@ export function createAuthClient(): AuthClient {
   return new AuthClient(new HttpClient(env.API_BASE_URL));
 }
 
+export function createShopsClient(): ShopsClient {
+  setLogLevel(env.LOG_LEVEL);
+  return new ShopsClient(new HttpClient(env.API_BASE_URL));
+}
+
 export function getLoginCredentials() {
   return {
     email: env.AUTH_EMAIL,
@@ -18,6 +23,10 @@ export function getLoginCredentials() {
     countryCode: env.AUTH_COUNTRY_CODE,
     consumerUsername: env.AUTH_CONSUMER_USERNAME,
   };
+}
+
+export function getMerchantCode(): string {
+  return env.MERCHANT_CODE;
 }
 
 export function createToggleDropshipService(): ToggleDropshipService {
@@ -31,7 +40,7 @@ export function createToggleDropshipService(): ToggleDropshipService {
     authClient,
     shopsClient,
     credentials: getLoginCredentials(),
-    merchantCode: env.MERCHANT_CODE,
+    merchantCode: getMerchantCode(),
   });
 }
 
