@@ -1,13 +1,14 @@
+import { env } from '../src/config/env';
 import { buildUpdateShopPayload, scheduleConfig } from '../src/config/schedule';
 
 describe('scheduleConfig', () => {
-  it('uses America/Sao_Paulo and the expected daily cron expressions', () => {
-    expect(scheduleConfig.timezone).toBe('America/Sao_Paulo');
-    expect(scheduleConfig.routines.deactivate.cron).toBe('0 9 * * *');
-    expect(scheduleConfig.routines.activate.cron).toBe('0 15 * * *');
+  it('uses SCHEDULE_TIMEZONE and cron expressions from env', () => {
+    expect(scheduleConfig.timezone).toBe(env.SCHEDULE_TIMEZONE);
+    expect(scheduleConfig.routines.deactivate.cron).toBe(env.DEACTIVATE_CRON);
+    expect(scheduleConfig.routines.activate.cron).toBe(env.ACTIVATE_CRON);
   });
 
-  it('targets Dropship with isActive false at 09:00 and true at 15:00', () => {
+  it('targets Dropship with isActive false on deactivate and true on activate', () => {
     expect(scheduleConfig.shop).toEqual({ tenantName: 'Dropship', shopID: 'dropship' });
     expect(scheduleConfig.routines.deactivate.isActive).toBe(false);
     expect(scheduleConfig.routines.activate.isActive).toBe(true);

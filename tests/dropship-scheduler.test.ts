@@ -28,12 +28,12 @@ describe('DropshipScheduler', () => {
     expect(schedule).toHaveBeenCalledWith(
       scheduleConfig.routines.deactivate.cron,
       expect.any(Function),
-      { timezone: 'America/Sao_Paulo' },
+      { timezone: scheduleConfig.timezone },
     );
     expect(schedule).toHaveBeenCalledWith(
       scheduleConfig.routines.activate.cron,
       expect.any(Function),
-      { timezone: 'America/Sao_Paulo' },
+      { timezone: scheduleConfig.timezone },
     );
   });
 

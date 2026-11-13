@@ -31,11 +31,11 @@ export const env = cleanEnv(process.env, {
     desc: 'Merchant whose order-split Dropship shop will be toggled',
   }),
   /** IANA timezone used by node-cron for both routines. */
-  SCHEDULE_TIMEZONE: str({ default: 'America/Sao_Paulo' }),
+  SCHEDULE_TIMEZONE: str({ default: 'America/Los_Angeles' }),
   /** node-cron expression for deactivating Dropship (isActive=false). */
-  DEACTIVATE_CRON: cronExpr({ default: '0 9 * * *' }),
+  DEACTIVATE_CRON: cronExpr({ default: '0 18 * * *' }),
   /** node-cron expression for activating Dropship (isActive=true). */
-  ACTIVATE_CRON: cronExpr({ default: '0 15 * * *' }),
+  ACTIVATE_CRON: cronExpr({ default: '0 23 * * *' }),
   /** When false, main refuses to start (exit 1). Tests set this so importing env does not imply a live scheduler. */
   SCHEDULER_ENABLED: bool({ default: true }),
   LOG_LEVEL: str({ default: 'info', choices: ['debug', 'info', 'warn', 'error'] }),

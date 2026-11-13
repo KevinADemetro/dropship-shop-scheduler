@@ -2,10 +2,10 @@
 
 Automação Node.js com `node-cron` que, duas vezes ao dia, autentica via a rota existente de login e atualiza o status `isActive` da Shop **Dropship** no Fulfillment Priority (merchants-api).
 
-| Horário (`America/Sao_Paulo`) | Ação |
+| Horário (`America/Los_Angeles`) | Ação |
 | --- | --- |
-| `0 9 * * *` (09:00) | Login → `PATCH` com `isActive: false` |
-| `0 15 * * *` (15:00) | Novo login → `PATCH` com `isActive: true` |
+| `0 18 * * *` (18:00) | Login → `PATCH` com `isActive: false` |
+| `0 23 * * *` (23:00) | Novo login → `PATCH` com `isActive: true` |
 
 ## Rotas reutilizadas (sem endpoints novos)
 
