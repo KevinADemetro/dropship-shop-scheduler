@@ -1,0 +1,11 @@
+.git
+.env
+.npmrc
+node_modules
+dist
+coverage
+*.log
+.DS_Store
+README.md
+tests
+jest.config.js
